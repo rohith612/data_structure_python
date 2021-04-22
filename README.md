@@ -6,14 +6,14 @@ A data structure is a particular way of organizing data in a computer so that it
 
 Topics:
 
-Linked List
-Stack
-Queue
-Binary Tree
-Binary Search Tree
-Heap
-Hashing
-Graph
-Matrix
-Misc
-Advanced Data Structure
+Linked List,
+Stack,
+Queue,
+Binary Tree,
+Binary Search Tree,
+Heap,
+Hashing,
+Graph,
+Matrix,
+Misc,
+Advanced Data Structure,
