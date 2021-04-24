@@ -328,6 +328,42 @@ class LinkedList:
             curr_node = curr_node.next
 
         return True
+
+    def swap_nodes(self, node_one, node_two):
+        if self.head is None:
+            return False
+
+        if node_one is node_two:
+            return False
+
+        curr = self.head
+        prev = None
+        node_one_prev = curr
+        node_two_prev = curr
+        while curr:
+            if node_one is curr.data:
+                node_one_prev = prev 
+            elif node_two is curr.data:
+                node_two_prev = prev 
+            prev = curr
+            curr = curr.next
+
+
+        if node_one_prev is None or node_two_prev is None:
+            print('Invalid node data')
+            return False
+
+        # swap previous node next pointer
+        temp_prev = node_one_prev.next
+        node_one_prev.next = node_two_prev.next
+        node_two_prev.next = temp_prev
+
+        # swap current node next element
+        temp_next = node_one_prev.next.next
+        node_one_prev.next.next = node_two_prev.next.next
+        node_two_prev.next.next = temp_next
+
+        return
                     
 
         
@@ -344,16 +380,16 @@ if __name__ == '__main__':
     second = Node(2)
     third = Node(3)
     fourth = Node(4)
-    fifth = Node(3)
-    sixth = Node(2)
-    seventh = Node(1)
+    # fifth = Node(3)
+    # sixth = Node(2)
+    # seventh = Node(1)
     first.next = second
     
     second.next = third
     third.next = fourth
-    fourth.next = fifth
-    fifth.next = sixth
-    sixth.next = seventh
+    # fourth.next = fifth
+    # fifth.next = sixth
+    # sixth.next = seventh
 
     # sixth.next = llist.head
 
@@ -392,15 +428,15 @@ if __name__ == '__main__':
     # print('midd in pointer ', llist.get_middle())
     # print('midd in pointer two ', llist.get_middle_new())
 
-
-    
-
-
-
-
-
     # print('loop detected' if llist.detect_loop() else 'no loop detected')
-    llist.remove_duplicates()
+    # llist.remove_duplicates()
+
+
+    print('before swap')
+    llist.print_list()
+
+    llist.swap_nodes(2, 4)
+    print('after swap')
     llist.print_list()
 
     
