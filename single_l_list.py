@@ -349,31 +349,18 @@ class LinkedList:
             curr = curr.next
 
 
-        # if node_one_prev is None or node_two_prev is None:
-        #     print('Invalid node data')
-        #     return False
+        if node_one_prev is None or node_two_prev is None:
+            print('Invalid node data')
+            return False
 
         # swap previous node next pointer
-        if node_one_prev is None:
-            temp_prev = self.head
-            temp_next = node_two_prev.next
-            self.head = node_two_prev.next
-            self.head.next = temp_prev.next
-            node_two_prev.next = temp_prev
+        temp_prev = node_one_prev.next
+        node_one_prev.next = node_two_prev.next
+        node_two_prev.next = temp_prev
 
-            node_two_prev.next.next = temp_next
-
-
-        else:
-            temp_prev = node_one_prev.next
-            node_one_prev.next = node_two_prev.next
-            node_two_prev.next = temp_prev
-
-            temp_next = node_one_prev.next.next
-            node_one_prev.next.next = node_two_prev.next.next
-            node_two_prev.next.next = temp_next
-
-       
+        temp_next = node_one_prev.next.next
+        node_one_prev.next.next = node_two_prev.next.next
+        node_two_prev.next.next = temp_next
 
         return True
                     
