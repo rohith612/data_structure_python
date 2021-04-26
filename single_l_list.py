@@ -349,22 +349,52 @@ class LinkedList:
             curr = curr.next
 
 
-        if node_one_prev is None or node_two_prev is None:
-            print('Invalid node data')
-            return False
+        # if node_one_prev is None or node_two_prev is None:
+        #     print('Invalid node data')
+        #     return False
 
         # swap previous node next pointer
-        temp_prev = node_one_prev.next
-        node_one_prev.next = node_two_prev.next
-        node_two_prev.next = temp_prev
+        if node_one_prev is None:
+            temp_prev = self.head
+            temp_next = node_two_prev.next
+            self.head = node_two_prev.next
+            self.head.next = temp_prev.next
+            node_two_prev.next = temp_prev
 
-        # swap current node next element
-        temp_next = node_one_prev.next.next
-        node_one_prev.next.next = node_two_prev.next.next
-        node_two_prev.next.next = temp_next
+            node_two_prev.next.next = temp_next
 
-        return
+
+        else:
+            temp_prev = node_one_prev.next
+            node_one_prev.next = node_two_prev.next
+            node_two_prev.next = temp_prev
+
+            temp_next = node_one_prev.next.next
+            node_one_prev.next.next = node_two_prev.next.next
+            node_two_prev.next.next = temp_next
+
+       
+
+        return True
                     
+
+    def move_last_front(self, ):
+        if self.head is None:
+            return False
+
+        curr = self.head
+        curr_prev = self.head
+
+        while curr and curr.next:
+            curr_prev = curr
+            curr = curr.next
+
+        curr_prev.next = None
+        curr.next = self.head
+
+        self.head = curr
+
+        return True
 
         
 
@@ -432,11 +462,14 @@ if __name__ == '__main__':
     # llist.remove_duplicates()
 
 
-    print('before swap')
-    llist.print_list()
+    # print('before swap')
+    # llist.print_list()
 
-    llist.swap_nodes(2, 4)
-    print('after swap')
+    # llist.swap_nodes(1, 4)
+    # print('after swap')
+
+    llist.move_last_front()
+
     llist.print_list()
 
     
