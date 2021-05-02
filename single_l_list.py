@@ -306,6 +306,7 @@ class LinkedList:
 
         return True
 
+    # remove all duplicate nodes in the list 
     def remove_duplicates(self):
         if self.head is None:
             return False
@@ -329,6 +330,7 @@ class LinkedList:
 
         return True
 
+    # swap given nodes in the list
     def swap_nodes(self, node_one, node_two):
         if self.head is None:
             return False
@@ -365,6 +367,7 @@ class LinkedList:
         return True
                     
 
+    # move tail node to the header
     def move_last_front(self, ):
         if self.head is None:
             return False
@@ -382,6 +385,27 @@ class LinkedList:
         self.head = curr
 
         return True
+
+    # reverse the linked list
+    def reverse_linked_list(self, ):
+        if self.head is None:
+            return False
+
+        curr = self.head
+        prev = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+
+        self.head = prev
+        return True
+
+
+
+
+
 
         
 
@@ -455,8 +479,11 @@ if __name__ == '__main__':
     # llist.swap_nodes(1, 4)
     # print('after swap')
 
-    llist.move_last_front()
+    # llist.move_last_front()
 
+    # llist.segregate_nodes()
+
+    llist.reverse_linked_list()
     llist.print_list()
 
     
