@@ -1,30 +1,32 @@
-# https://www.geeksforgeeks.og/stack-in-python/
+# make head as new node
 
 class Node:
-    def __init__(self, value):
+    def __init__(self, data):
         super().__init__()
-        self.value = value
+        self.data = data
         self.next = None
 
 
 
 class Stack:
-    def __init__(self, ):
+    def __init__(self):
         super().__init__()
         self.head = None
         self.size = 0
+        # set stack head
+        self.set_stack_head(Node('Head'))
 
     def __str__(self):
         if self.empty_stack():
             raise Exception('Empty stack!')
 
-        curr = self.head   
-        out = '' 
+        curr = self.head.next  
+        out_list = list()
         while curr:
-            out += str(curr.value) + "->"
+            out_list.append(curr.data)
             curr = curr.next
         
-        return out[:-3]
+        return '->'.join([str(i) for i in out_list])
 
     def set_stack_head(self, node):
         if self.empty_stack() and self.head is None:
@@ -42,27 +44,51 @@ class Stack:
         if self.empty_stack():
             raise Exception('Peeking from an empty stack!')
         
-        return self.head.next.value
+        return self.head.next.data
 
     def push(self, node):
-        if self.empty_stack():
-            raise Exception('Empty stack!')
-        pass
+        if self.head is None:
+            raise Exception('Empty stack head to push')
+
+        node.next = self.head.next
+        self.head.next = node
+        self.size += 1
+        return True
 
     def pop(self, ):
         if self.empty_stack():
             raise Exception('Empty stack!')
-        pass
+        
+        remove = self.head.next.data
+        self.head.next = self.head.next.next
+        self.size -= 1
+        return remove
 
 
 if __name__ == "__main__":
     stack = Stack()
-    stack_head = Node('Head')
-    stack.set_stack_head(stack_head)
 
-    stack.set_stack_head(Node('dupe'))
+    one = Node(10)
+    stack.push(one)
+    two = Node(20)
+    stack.push(two)
+    three = Node(30)
+    stack.push(three)
 
-    # stack.peek()
+
+    print('stack head ',stack.head.data)
+
+    print('stack elements :', stack)
+
+    print('pop stack top element:', stack.pop())
+
+    print('stack peek(top) element :', stack.peek())
+
+    print('stack size : ', stack.get_size())
+
+    print('stack empty ?', stack.empty_stack())
+
+    print('after operation stack elements :', str(stack))
 
 
 
