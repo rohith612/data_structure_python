@@ -1,4 +1,7 @@
-
+# dynamic programing
+# divide the problem into sub problems
+# find the sum can generate with the minimum subsets
+# use non recursive bottom-up approch
 def subset_sum(set_data, sum):
     
     if len(set_data) < 1 or sum < 1:
